@@ -1,233 +1,157 @@
 package com.zipcodewilmington.phonebook;
-
-import org.junit.After;
+import junit.framework.TestCase;
+import java.util.ArrayList;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
-import java.util.ArrayList;
-
-/**
- * Created by leon on 1/23/18.
- */
-public class PhoneBookTest {
-
-    PhoneBook phoneBook = new PhoneBook();
-
-// @Before
-//
-//      public void setup() {
-//
-//   phoneBook.add ("Shelly", "302-322-1216");
+public class PhoneBookTest extends TestCase {
 
 
-//  @After
-//
-//  public void tearDown() {
-//
-//    entries.clear();
-//}
+    /**
+     * Created by leon on 1/23/18.
+     */
+
 
     @Test
-
-    public void addTest () {//String name, String phoneNumber){
+    public void addTest() {
 
         //Given
+        PhoneBook phoneBook = new PhoneBook();
+        String name = "Nancy";
+        String ph1 = "302-893-2783";
+        phoneBook.add("Nancy", "302-893-2783");
 
-        String name = "Neela";
-        String ph1 = "210-567-6759";
-        String ph2 = "565-765-8765";
-        ArrayList phoneNumber = new ArrayList <String>();
-        phoneNumber.add(ph1);
-        phoneNumber.add(ph2);
-
-
-//     String name = "Adrish";
-//     ArrayList phoneNumber = "212-567-6754";
         //When
-        phoneBook.add (name, phoneNumber);
-        ArrayList actual = phoneBook.lookup(name);
-        //Boolean bool = phoneBook.hasEntry(name);
+        phoneBook.add(name, ph1);
+        ArrayList actual = (ArrayList) phoneBook.lookup(name);
 
         //Then
-        //Assert.assertTrue(bool);
-        Assert.assertEquals(phoneNumber, actual);
-
+        Assert.assertEquals(ph1, actual);
     }
 
     @Test
-
-    public void addTest2 () {//String name, String phoneNumber){
+    public void addTest2() {
 
         //Given
+        PhoneBook phoneBook = new PhoneBook();
+        String name = "Joel";
+        String ph1 = "732-567-8888";
+        phoneBook.add("Joel", "732-567-8888");
 
-        String name = "Neela";
-        String ph1 = "210-567-8888";
-        String ph2 = "565-765-6666";
-        ArrayList phoneNumber = new ArrayList <String>();
-        phoneNumber.add(ph1);
-        phoneNumber.add(ph2);
-
-
-//     String name = "Adrish";
-//     ArrayList phoneNumber = "212-567-6754";
         //When
-        phoneBook.add (name, phoneNumber);
-        ArrayList actual = phoneBook.lookup(name);
-        //Boolean bool = phoneBook.hasEntry(name);
+        phoneBook.add(name, ph1);
+        ArrayList actual = (ArrayList) phoneBook.lookup(name);
 
         //Then
-        //Assert.assertTrue(bool);
-        Assert.assertEquals(phoneNumber, actual);
-
+        Assert.assertEquals(ph1, actual);
     }
 
     @Test
-
-    public void removeAllTest () {
+    public void removeAllTest() {
 
         //Given
+        PhoneBook phoneBook = new PhoneBook();
+        String name = "Carl";
+        String ph1 = "908-234-6754";
+        String ph2 = "908-765-4579";
+        phoneBook.addAll(name, ph1, ph2);
 
-        String name = "Mike";
-        String ph1 = "210-567-6758";
-        String ph2 = "565-765-8065";
-        ArrayList phoneNumber = new ArrayList <String>();
-
-//    String name = "Mike";
-//    ArrayList phoneNumber = "216-567-6759";
-
-        phoneBook.add (name, phoneNumber);
         //When
         phoneBook.removeAll(name);
-        ArrayList actual = phoneBook.lookup(name);
+        ArrayList actual = (ArrayList) phoneBook.lookup(name);
 
 
         //Then
-
         Assert.assertNull(actual);
 
     }
 
     @Test
-
-    public void lookupTest () {
+    public void removeAllTest2() {
 
         //Given
+        PhoneBook phoneBook = new PhoneBook();
+        String name = "Joey";
+        String ph1 = "908-668-8976";
+        String ph2 = "908-668-0907";
+        phoneBook.addAll(name, ph1, ph2);
 
+        //When
+        phoneBook.removeAll(name);
+        ArrayList actual = (ArrayList) phoneBook.lookup(name);
+
+
+        //Then
+        Assert.assertNull(actual);
+
+    }
+
+    @Test
+    public void lookupTest() {
+
+        //Given
+        PhoneBook phoneBook = new PhoneBook();
         String name = "David";
-        String ph1 = "219-567-6758";
-        String ph2 = "561-765-8065";
-        ArrayList phoneNumber = new ArrayList <String>();
+        String ph1 = "302-567-6758";
+        phoneBook.add(name, ph1);
 
-//    String name = "David";
-//    ArrayList phoneNumber = "219-567-6759";
-
-        phoneBook.add (name, phoneNumber);
         //When
-
-        ArrayList actual = phoneBook.lookup(name);
-
+        ArrayList actual = (ArrayList) phoneBook.lookup(name);
 
         //Then
-
-        Assert.assertEquals(phoneNumber, actual);
+        Assert.assertEquals(ph1, actual);
 
     }
 
     @Test
-
-    public void reverseLookupTest () {
+    public void lookupTest2() {
 
         //Given
+        PhoneBook phoneBook = new PhoneBook();
+        String name = "Brian";
+        String ph1 = "302-561-9004";
+        phoneBook.add(name, ph1);
 
-        String name = "Neela";
-        //ArrayList phoneNumber ;
-        String ph1 = "210-567-6759";
-        String ph2 = "565-765-8765";
-        ArrayList phoneNumber = new ArrayList <String>();
-        phoneNumber.add(ph1);
-        phoneNumber.add(ph2);
-
-        phoneBook.add (name, phoneNumber);
         //When
-
-        String actual = phoneBook.reverseLookup(ph2);
-
+        ArrayList actual = (ArrayList) phoneBook.lookup(name);
 
         //Then
+        Assert.assertEquals(ph1, actual);
 
+    }
+
+    @Test
+    public void reverseLookupTest() {
+
+        //Given
+        PhoneBook phoneBook = new PhoneBook();
+        String name = "Bobbie";
+        String ph1 = "908-387-2678";
+        phoneBook.add(name, ph1);
+
+        //When
+        String actual = phoneBook.reverseLookup(ph1);
+
+        //Then
         Assert.assertEquals(name, actual);
-
     }
 
     @Test
-    public void displayTest () {
+    public void reverseLookupTest2() {
 
         //Given
-
-        String name = "Neela";
-        String ph1 = "210-567-6759";
-        String ph2 = "565-765-8765";
-        String ph3 = "777-777-7777";
-        ArrayList phoneNumber = new ArrayList <String>();
-        phoneNumber.add(ph1);
-        phoneNumber.add(ph2);
-
-        phoneBook.add (name, phoneNumber);
-        phoneNumber.add(ph3);
-        //phoneBook .add(name, phoneNumber);
-        //phoneBook.add ( "Adrish", "243-765-7654");
-        //When
-
-        phoneBook.display();
-
-        //Then
-
-        //Assert.assertEquals(name, actual);
-
-    }
-
-    @Test
-
-    public void removeTest () {
-
-        //Given
-
-        String name = "Mike";
-        String ph1 = "210-567-6758";
-        String ph2 = "565-765-8065";
-        ArrayList phoneNumber = new ArrayList <String>();
-        phoneNumber.add(ph1);
-        phoneNumber.add(ph2);
-
-//    String name = "Mike";
-//    ArrayList phoneNumber = "216-567-6759";
-
-        phoneBook.add (name, phoneNumber);
-
-        phoneBook.display();
+        PhoneBook phoneBook = new PhoneBook();
+        String name = "Alyssa";
+        String ph1 = "646-410-2737";
+        phoneBook.add(name, ph1);
 
         //When
-
-        phoneBook.remove(ph1);
-
+        String actual = phoneBook.reverseLookup(ph1);
 
         //Then
-
-
-
-        phoneBook.display();
-
+        Assert.assertEquals(name, actual);
     }
-
-
-
-
-
-
-
-
-
-
 }
+
+
 
